@@ -1,0 +1,24 @@
+group 'io.github.mkgerasimenko'
+version '1.0.1'
+
+apply plugin: 'java'
+sourceCompatibility = 1.8
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile('org.testng:testng:6.12')
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion '4.2.1'
+}
+
+test {
+    useTestNG() {
+        String suite = project.hasProperty("suite") ? project.property("suite") : System.getenv("SUITE")
+        suites "src/test/resources/${suite}.xml"
+    }
+}

@@ -1,0 +1,17 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="EOS">
+    <test name="Firefox group">
+        <classes>
+            <class name="com.waverleysoftware.AccessCodeTests">
+                <methods>
+                    <include name="accessCodeShouldBeCreated"/>
+                </methods>
+            </class>
+            <class name="com.waverleysoftware.SensorTests">
+                <methods>
+                    <exclude name="sensorShouldBeModified"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Smoke">
+    <test name="Chrome group">
+        <classes>
+            <class name="com.waverleysoftware.AccessCodeTests"/>
+            <class name="com.waverleysoftware.SensorTests"/>
+        </classes>
+    </test>
+</suite>
