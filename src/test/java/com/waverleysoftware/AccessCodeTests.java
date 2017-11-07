@@ -1,32 +1,34 @@
 package com.waverleysoftware;
 
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import com.waverleysoftware.model.Panel;
 import org.testng.annotations.Test;
 
+import java.util.logging.Level;
+
+/**
+ * Author mkgerasimenko.
+ */
 public class AccessCodeTests extends BaseTest {
-    @BeforeClass
-    public void setUp() {
-        System.out.println("Setting up on child level");
+
+    @Test(dataProvider = "getPanelData", dataProviderClass = DataSuppliers.class)
+    public void accessCodeShouldBeAdded(final Panel panel) {
+
+        final String conditionForType = "home";
+
+        if (conditionForType.equals(panel.getType())
+                && panel.isHasTouchScreen()
+                && LOG.isLoggable(Level.INFO)) {
+            LOG.info("For " + panel.getName() + " panel created the following code: " + panel.getMasterCode());
+        } else {
+            LOG.info("There is no panel with following condition");
+        }
     }
 
-    @Test(priority = 1)
-    public void accessCodeShouldBeCreated() {
-        System.out.println("Access code created");
+    @Test(dataProvider = "getPanelData", dataProviderClass = DataSuppliers.class)
+    public void accessCodeShouldBeDeleted(final Panel panel) {
+        if (LOG.isLoggable(Level.INFO)) {
+            LOG.info("From " + panel.getName() + " panel deleted the following code: " + panel.getMasterCode());
+        }
     }
 
-    @Test(priority = 2)
-    public void accessCodeShouldBeModified() {
-        System.out.println("Access code modified");
-    }
-
-    @Test(priority = 3)
-    public void accessCodeShouldBeDeleted() {
-        System.out.println("Access code deleted");
-    }
-
-    @AfterClass
-    public void tearDown() {
-        System.out.println("Ending process on child level");
-    }
 }

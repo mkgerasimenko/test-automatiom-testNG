@@ -3,14 +3,22 @@ package com.waverleysoftware;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
+import java.util.logging.Logger;
+
+/**
+ * Author mkgerasimenko.
+ */
 public class BaseTest {
+
+    protected static final Logger LOG = Logger.getLogger(BaseTest.class.getName());
+
     @BeforeClass
     public void setUp() {
-        System.out.println("Setting up on parent level");
+        LOG.info("Setting up on parent level");
     }
 
     @AfterClass
     public void tearDown() {
-        System.out.println("Ending process on parent level");
+        LOG.info("Ending process on parent level");
     }
 }

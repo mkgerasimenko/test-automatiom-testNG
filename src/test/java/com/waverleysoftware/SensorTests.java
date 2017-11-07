@@ -1,20 +1,39 @@
 package com.waverleysoftware;
 
+import com.waverleysoftware.model.Sensor;
 import org.testng.annotations.Test;
 
+import java.util.logging.Level;
+
+/**
+ * Author mkgerasimenko.
+ */
 public class SensorTests extends BaseTest {
-    @Test(priority = 4)
-    public void sensorShouldBeAdded() {
-        System.out.println("Sensor added");
+
+    @Test(dataProvider = "getSensorData", dataProviderClass = DataSuppliers.class)
+    public void sensorShouldBeAdded(final Sensor sensor) {
+        final String typeOfSensor = sensor.getType().toString().toLowerCase();
+        final String condition = "embedded";
+        if (condition.equals(typeOfSensor)
+                && LOG.isLoggable(Level.INFO)) {
+            LOG.info("Selected sensor with " + typeOfSensor + " type added");
+        }
     }
 
-    @Test(priority = 5)
-    public void sensorShouldBeModified() {
-        System.out.println("Sensor modified");
+    @Test(dataProvider = "getSensorData", dataProviderClass = DataSuppliers.class)
+    public void sensorShouldBeModified(final Sensor sensor) {
+        final String nameOfSensor = sensor.getName();
+        final String condition = "Door";
+        if (condition.equals(nameOfSensor)
+                && LOG.isLoggable(Level.INFO)) {
+            LOG.info(sensor.getType().toString().toLowerCase() + " sensor type and name " + nameOfSensor + " added");
+        }
     }
 
-    @Test(priority = 6)
-    public void sensorShouldBeDeleted() {
-        System.out.println("Sensor deleted");
+    @Test(dataProvider = "getSensorData", dataProviderClass = DataSuppliers.class)
+    public void sensorShouldBeDeleted(final Sensor sensor) {
+        if (LOG.isLoggable(Level.INFO)) {
+            LOG.info(sensor.getType().toString().toLowerCase() + " sensor type, name " + sensor.getName() + " deleted");
+        }
     }
 }
