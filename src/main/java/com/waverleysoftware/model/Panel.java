@@ -1,20 +1,20 @@
 package com.waverleysoftware.model;
 
 /**
- * A simple model class for user processing.
+ * A simple model class for panel processing.
  */
 public class Panel {
 
     private final String name;
     private final String masterCode;
     private final String type;
-    private final boolean hasTouchScreen;
+    private final boolean touchScreen;
 
-    public Panel(final String name, final String masterCode, final String type, final boolean hasTouchScreen) {
+    public Panel(final String name, final String masterCode, final String type, final boolean touchScreen) {
         this.name = name;
         this.masterCode = masterCode;
         this.type = type;
-        this.hasTouchScreen = hasTouchScreen;
+        this.touchScreen = touchScreen;
     }
 
     public String getName() {
@@ -29,8 +29,8 @@ public class Panel {
         return type;
     }
 
-    public boolean isHasTouchScreen() {
-        return hasTouchScreen;
+    public boolean hasTouchScreen() {
+        return touchScreen;
     }
 
     @Override

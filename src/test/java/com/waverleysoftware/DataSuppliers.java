@@ -9,7 +9,7 @@ import static com.waverleysoftware.model.Type.EMBEDDED;
 import static com.waverleysoftware.model.Type.HINGED;
 
 /**
- * Author mkgerasimenko.
+ * A simple model class for data processing.
  */
 public class DataSuppliers {
 

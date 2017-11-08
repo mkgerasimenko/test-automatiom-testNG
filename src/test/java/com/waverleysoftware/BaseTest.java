@@ -6,7 +6,7 @@ import org.testng.annotations.BeforeClass;
 import java.util.logging.Logger;
 
 /**
- * Author mkgerasimenko.
+ * A simple base class for processing tests.
  */
 public class BaseTest {
 

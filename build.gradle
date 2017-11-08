@@ -22,12 +22,14 @@ task wrapper(type: Wrapper) {
 }
 
 test {
-    testLogging{
+    testLogging {
         showStandardStreams = false
     }
     useTestNG() {
         listeners << 'io.github.sskorol.core.DataProviderTransformer'
         listeners << 'com.waverleysoftware.listemers.TestListener'
+        listeners << 'com.waverleysoftware.listemers.SecondTestListener'
+
         String suite = project.hasProperty("suite") ? project.property("suite") : System.getenv("SUITE")
         suites "src/test/resources/${suite}.xml"
     }

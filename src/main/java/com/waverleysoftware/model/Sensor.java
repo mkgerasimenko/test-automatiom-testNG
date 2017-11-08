@@ -1,7 +1,7 @@
 package com.waverleysoftware.model;
 
 /**
- * Author mkgerasimenko.
+ * A simple model class for sensor processing.
  */
 public class Sensor {
 

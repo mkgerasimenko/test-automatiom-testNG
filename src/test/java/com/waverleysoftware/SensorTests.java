@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 import java.util.logging.Level;
 
 /**
- * Author mkgerasimenko.
+ * A simple model class for sensor testing.
  */
 public class SensorTests extends BaseTest {
 
