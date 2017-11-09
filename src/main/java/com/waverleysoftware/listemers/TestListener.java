@@ -1,15 +1,13 @@
 package com.waverleysoftware.listemers;
 
+import lombok.extern.slf4j.Slf4j;
 import org.testng.IInvokedMethod;
 import org.testng.IInvokedMethodListener;
 import org.testng.ITestResult;
 
-import java.util.logging.Logger;
-
 @SuppressWarnings("JavadocType")
+@Slf4j
 public class TestListener implements IInvokedMethodListener {
-
-    private static final Logger LOG = Logger.getLogger(TestListener.class.getName());
 
     @Override
     public void beforeInvocation(final IInvokedMethod method, final ITestResult testResult) {
@@ -24,10 +22,10 @@ public class TestListener implements IInvokedMethodListener {
     }
 
     private void takeScreenshot() {
-        LOG.info("Taking screenshot");
+        log.info("Taking screenshot");
     }
 
     private void getParameters() {
-        LOG.info("Getting parameters");
+        log.info("Getting parameters");
     }
 }

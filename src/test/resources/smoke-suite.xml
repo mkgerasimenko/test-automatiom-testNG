@@ -1,6 +1,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="Smoke">
     <test name="Chrome group">
+        <parameter name="browser" value="chrome"/>
         <classes>
             <class name="com.waverleysoftware.AccessCodeTests"/>
             <class name="com.waverleysoftware.SensorTests"/>

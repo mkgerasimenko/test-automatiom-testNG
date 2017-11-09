@@ -14,11 +14,14 @@ repositories {
 
 dependencies {
     compile('org.testng:testng:6.12',
-            'io.github.sskorol:test-data-supplier:1.3.0')
+            'io.github.sskorol:test-data-supplier:1.3.0',
+            'org.projectlombok:lombok:1.16.18')
+
+    testCompile 'org.assertj:assertj-core:3.8.0'
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion '4.3'
+    gradleVersion '4.2.1'
 }
 
 test {

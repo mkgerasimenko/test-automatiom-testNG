@@ -7,25 +7,29 @@ import one.util.streamex.StreamEx;
 
 import static com.waverleysoftware.model.Type.EMBEDDED;
 import static com.waverleysoftware.model.Type.HINGED;
+import static java.util.Arrays.asList;
 
 /**
  * A simple model class for data processing.
  */
 public class DataSuppliers {
 
-    @DataSupplier
+    @DataSupplier(transpose = true)
     public StreamEx getPanelData() {
         return StreamEx.of(
-                new Panel("Lyn", "1111", "home", true),
-                new Panel("ADC", "2222", "office", false));
+                new Panel("lyn", "1111", "home", true),
+                new Panel("adc", "2222", "office", false));
     }
 
     @DataSupplier
+    public String getName() {
+        return "someName";
+    }
+
+    @DataSupplier(transpose = true)
     public StreamEx getSensorData() {
-        return StreamEx.of(
-                new Sensor("Door", EMBEDDED),
+        return StreamEx.of(asList(new Sensor("Door", EMBEDDED),
                 new Sensor("Window", HINGED),
-                new Sensor("Garage", EMBEDDED)
-        );
+                new Sensor("Garage", EMBEDDED)));
     }
 }
