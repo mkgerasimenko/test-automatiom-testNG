@@ -7,24 +7,26 @@ import org.testng.IInvokedMethodListener;
 import org.testng.ITestResult;
 import org.testng.internal.TestResult;
 
-@SuppressWarnings({"JavadocType", "unchecked"})
+@SuppressWarnings("JavadocType")
 @Slf4j
 public class TestListener implements IInvokedMethodListener {
-    private static ThreadLocal thread = new ThreadLocal();
+    private static final ThreadLocal<SoftAssertions> THREAD_LOCAL_CONTAINER_FOR_SOFT_ASSERTIONS = new ThreadLocal<>();
 
     @Override
     public void beforeInvocation(final IInvokedMethod method, final ITestResult testResult) {
         final SoftAssertions softAssert = new SoftAssertions();
-        thread.set(softAssert);
+        THREAD_LOCAL_CONTAINER_FOR_SOFT_ASSERTIONS.set(softAssert);
         getParameters();
     }
 
     @Override
     public void afterInvocation(final IInvokedMethod method, final ITestResult testResult) {
-        if (method.getTestMethod().isTest()) {
+
+        if (method.getTestMethod().isTest() && testResult.getStatus() == ITestResult.SUCCESS) {
             try {
                 getSoftAssert().assertAll();
             } catch (AssertionError e) {
+                testResult.getTestContext().getFailedTests().removeResult(testResult.getMethod());
                 testResult.setStatus(TestResult.FAILURE);
                 testResult.setThrowable(e);
             }
@@ -36,6 +38,6 @@ public class TestListener implements IInvokedMethodListener {
     }
 
     public static SoftAssertions getSoftAssert() {
-        return (SoftAssertions) thread.get();
+        return THREAD_LOCAL_CONTAINER_FOR_SOFT_ASSERTIONS.get();
     }
 }

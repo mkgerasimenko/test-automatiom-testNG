@@ -15,16 +15,19 @@ public class AccessCodeTests extends BaseTest {
     @Test(dataProvider = "getPanelData", dataProviderClass = DataSuppliers.class)
     public void accessCodeShouldBeAdded(final Panel... panels) {
         final String conditionForType = "home";
-        getSoftAssert().assertThat(panels[0].getType()).as("Panel Name").isEqualTo(conditionForType);
+        getSoftAssert().assertThat(panels[0].getType())
+                .as("Panel Name").isEqualTo(conditionForType);
     }
 
     @Test(dataProvider = "getPanelData", dataProviderClass = DataSuppliers.class)
     public void accessCodeShouldBeCreatedWithSomeDates(final Panel... panels) {
-        getSoftAssert().assertThat(asList(panels).get(0).getName()).as("panel name").isEqualTo("lyn");
+        getSoftAssert().assertThat(asList(panels).get(0).getName())
+                .as("panel name").isEqualTo("lyn");
     }
 
     @Test(dataProvider = "getPanelData", dataProviderClass = DataSuppliers.class)
     public void accessCodeShouldBeDeleted(final Panel... panels) {
-        getSoftAssert().assertThat(asList(panels)).as("List of panels").hasSize(2);
+        getSoftAssert().assertThat(asList(panels))
+                .as("List of panels").hasSize(2);
     }
 }
