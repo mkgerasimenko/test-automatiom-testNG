@@ -7,7 +7,6 @@ import lombok.Data;
  */
 @Data
 public class Sensor {
-
     private final String name;
     private final Type type;
 }

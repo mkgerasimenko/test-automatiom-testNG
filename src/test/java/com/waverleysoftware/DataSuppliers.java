@@ -13,17 +13,11 @@ import static java.util.Arrays.asList;
  * A simple model class for data processing.
  */
 public class DataSuppliers {
-
     @DataSupplier(transpose = true)
     public StreamEx getPanelData() {
         return StreamEx.of(
                 new Panel("lyn", "1111", "home", true),
                 new Panel("adc", "2222", "office", false));
-    }
-
-    @DataSupplier
-    public String getName() {
-        return "someName";
     }
 
     @DataSupplier(transpose = true)

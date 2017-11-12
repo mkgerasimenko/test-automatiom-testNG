@@ -7,7 +7,6 @@ import lombok.Data;
  */
 @Data
 public class Panel {
-
     private final String name;
     private final String masterCode;
     private final String type;

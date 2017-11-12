@@ -7,7 +7,6 @@ import org.testng.ISuiteListener;
 @SuppressWarnings("JavadocType")
 @Slf4j
 public class SecondTestListener implements ISuiteListener {
-
     @Override
     public void onStart(final ISuite suite) {
         log.info("Start!!!!");
