@@ -14,8 +14,7 @@ public class TestListener implements IInvokedMethodListener {
 
     @Override
     public void beforeInvocation(final IInvokedMethod method, final ITestResult testResult) {
-        final SoftAssertions softAssert = new SoftAssertions();
-        THREAD_LOCAL_CONTAINER_FOR_SOFT_ASSERTIONS.set(softAssert);
+        THREAD_LOCAL_CONTAINER_FOR_SOFT_ASSERTIONS.set(new SoftAssertions());
         getParameters();
     }
 
@@ -26,7 +25,7 @@ public class TestListener implements IInvokedMethodListener {
             try {
                 getSoftAssert().assertAll();
             } catch (AssertionError e) {
-                testResult.getTestContext().getFailedTests().removeResult(testResult.getMethod());
+                testResult.getTestContext().getPassedTests().removeResult(testResult.getMethod());
                 testResult.setStatus(TestResult.FAILURE);
                 testResult.setThrowable(e);
             }
