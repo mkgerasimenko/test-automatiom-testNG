@@ -12,19 +12,41 @@ repositories {
     jcenter()
 }
 
+ext {
+    gsonVersion = '2.8.2'
+    assertjVersion = '3.8.0'
+    lombokVersion = '1.16.18'
+    dataSupplierVersion = '1.3.0'
+    testngVersion = '6.12'
+    commonLeng3 = '3.6'
+    jacksonDataFormat = '2.9.2'
+    streamEx = '0.6.5'
+    vavr = '0.9.1'
+    jdom = '2.0.6'
+    commonsIo = '1.3.2'
+    joor = '0.9.6'
+}
+
 dependencies {
-    compile('org.testng:testng:6.12',
-            'io.github.sskorol:test-data-supplier:1.3.0')
+    compile("org.testng:testng:${testngVersion}",
+            "io.github.sskorol:test-data-supplier:${dataSupplierVersion}",
+            "org.projectlombok:lombok:${lombokVersion}",
+            "org.assertj:assertj-core:${assertjVersion}",
+            "com.google.code.gson:gson:${gsonVersion}",
+            "com.fasterxml.jackson.dataformat:jackson-dataformat-xml:${jacksonDataFormat}",
+            "one.util:streamex:${streamEx}",
+            "io.vavr:vavr:${vavr}",
+            "org.apache.commons:commons-lang3:${commonLeng3}",
+            "org.jdom:jdom2:${jdom}",
+            "org.apache.commons:commons-io:${commonsIo}",
+            "org.jooq:joor:${joor}")
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion '4.3'
+    gradleVersion '4.2.1'
 }
 
 test {
-    testLogging {
-        showStandardStreams = false
-    }
     useTestNG() {
         listeners << 'io.github.sskorol.core.DataProviderTransformer'
         listeners << 'com.waverleysoftware.listemers.TestListener'
