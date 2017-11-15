@@ -39,11 +39,10 @@ public class DataSuppliers {
 
     @SuppressWarnings("unchecked")
     private <T> T getTypeByProvidedInfo(final Method method) {
-        final Data declaredAnnotation = method.getDeclaredAnnotation(Data.class);
-
-        return ofNullable(declaredAnnotation)
+        
+        return ofNullable(method.getDeclaredAnnotation(Data.class))
                 .map(Data::source)
-                .map(source -> getImplByDataSource(source).readFrom(source, (Class<T>) declaredAnnotation.dataClass()))
+                .map(source -> getImplByDataSource(source).readFrom(source, (Class<T>) method.getDeclaredAnnotation(Data.class).dataClass()))
                 .orElseThrow(() -> new NoClassDefFoundError("No Data class found"));
     }
 

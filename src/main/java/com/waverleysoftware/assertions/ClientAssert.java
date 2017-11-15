@@ -26,7 +26,7 @@ public class ClientAssert extends AbstractAssert<ClientAssert, Client> {
         return this;
     }
 
-    public ClientAssert hasNextAge(final int clientAge) {
+    public ClientAssert hasAge(final int clientAge) {
         isNotNull();
 
         final int age = actual.getAge();
