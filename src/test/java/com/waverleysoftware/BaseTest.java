@@ -1,24 +1,37 @@
 package com.waverleysoftware;
 
+import lombok.extern.slf4j.Slf4j;
+import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
-import java.util.logging.Logger;
+import java.lang.reflect.Method;
+import java.time.LocalDate;
 
 /**
  * A simple base class for processing tests.
  */
+@Slf4j
 public class BaseTest {
 
-    protected static final Logger LOG = Logger.getLogger(BaseTest.class.getName());
-
     @BeforeClass
-    public void setUp() {
-        LOG.info("Setting up on parent level");
+    public void setUp(final ITestContext context) {
+        log.info("{} - {}", "Starting process on parent level with {}",
+                LocalDate.now(),
+                context.getCurrentXmlTest().getName());
+    }
+
+    @BeforeMethod
+    public void setUp(final ITestContext context, final Method method) {
+        log.info("Method {}, with declared annotation {} and with group {}.",
+                method.getName(), String.valueOf(method.getDeclaredAnnotation(Test.class)),
+                context.getCurrentXmlTest().getParameter("browser"));
     }
 
     @AfterClass
     public void tearDown() {
-        LOG.info("Ending process on parent level");
+        log.info("Ending process on parent level");
     }
 }

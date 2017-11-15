@@ -1,0 +1,3 @@
+01,Door,EMBEDDED
+02,Window,HINGED
+03,Garage,EMBEDDED
