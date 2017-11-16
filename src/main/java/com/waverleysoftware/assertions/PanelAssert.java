@@ -34,6 +34,7 @@ public class PanelAssert extends AbstractAssert<PanelAssert, Panel> {
         if (!Objects.areEqual(code, masterCode)) {
             failWithMessage(ERROR_MESSAGE_TEMPLATE, "Panel code", actual, masterCode, code);
         }
+
         return this;
     }
 }

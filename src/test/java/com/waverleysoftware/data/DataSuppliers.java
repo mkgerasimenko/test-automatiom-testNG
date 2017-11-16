@@ -6,6 +6,7 @@ import io.github.sskorol.core.DataSupplier;
 import one.util.streamex.StreamEx;
 
 import java.lang.reflect.Method;
+import java.util.Arrays;
 
 import static com.waverleysoftware.listemers.SecondTestListener.getImplByDataSource;
 import static com.waverleysoftware.model.Type.EMBEDDED;
@@ -21,15 +22,28 @@ public class DataSuppliers {
 
     @DataSupplier(transpose = true)
     public StreamEx getPanelData() {
+
         return StreamEx.of(on(Panel.class).create("lyn", "1111", "home").get(),
                 on(Panel.class).create("adc", "2222", "office").get());
     }
 
     @DataSupplier(transpose = true)
     public StreamEx getSensorData() {
+
         return StreamEx.of(asList(new Sensor(1, "Door", EMBEDDED),
                 new Sensor(2, "Window", HINGED),
                 new Sensor(3, "Garage", EMBEDDED)));
+    }
+
+    @SuppressWarnings("unchecked")
+    @DataSupplier(transpose = true)
+    public <T> T[] getDataCollection(final Method method) {
+
+        return (T[]) ofNullable(method.getAnnotationsByType(Data.class))
+                .map(data -> StreamEx.of(data)
+                        .flatMap(data1 -> Arrays.stream(getImplByDataSource(data1.source())
+                                .readFrom(data1.source(), (Class<T>) data1.entity()))).toArray())
+                .orElseThrow(() -> new NoClassDefFoundError("No Data class found"));
     }
 
     @DataSupplier(flatMap = true)
@@ -39,10 +53,10 @@ public class DataSuppliers {
 
     @SuppressWarnings("unchecked")
     private <T> StreamEx<T> getTypeByProvidedInfo(final Method method) {
+
         return ofNullable(method.getDeclaredAnnotation(Data.class))
                 .map(data -> StreamEx.of(getImplByDataSource(data.source())
                         .readFrom(data.source(), (Class<T>) data.entity())))
                 .orElseThrow(() -> new NoClassDefFoundError("No Data class found"));
     }
-
 }

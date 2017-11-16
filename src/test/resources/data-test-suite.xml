@@ -3,7 +3,7 @@
     <test name="JSON/XML">
         <parameter name="browser" value="chrome"/>
         <classes>
-            <class name="com.waverleysoftware.DataFromFileTest"/>
+            <class name="com.waverleysoftware.DataFromFileTests"/>
         </classes>
     </test>
 </suite>

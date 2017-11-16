@@ -1,6 +1,5 @@
 package com.waverleysoftware.model;
 
-
 import lombok.Data;
 
 import javax.xml.bind.annotation.XmlRootElement;

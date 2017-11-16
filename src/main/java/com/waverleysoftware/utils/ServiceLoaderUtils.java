@@ -7,14 +7,13 @@ import java.util.Collections;
 import java.util.List;
 import java.util.ServiceLoader;
 
-
 /**
  * A simple service-provider loading facility.
  */
 public final class ServiceLoaderUtils {
 
     private ServiceLoaderUtils() {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("Illegal access to private constructor.");
     }
 
     public static <T> List<T> load(final Class<T> entityClass, final ClassLoader classLoader) {
