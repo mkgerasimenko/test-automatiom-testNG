@@ -8,5 +8,5 @@ public interface DataReader {
 
     String getEntityType();
 
-    <T> T readFrom(String dataSource, Class<T> entityClass);
+    <T> T[] readFrom(String dataSource, Class<T> entityClass);
 }
