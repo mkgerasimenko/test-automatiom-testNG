@@ -18,7 +18,7 @@ public class BaseTest {
 
     @BeforeClass
     public void setUp(final ITestContext context) {
-        log.info("{} - {}", "Starting process on parent level with {}",
+        log.info("{} - {}", "Starting process on parent level",
                 LocalDate.now(),
                 context.getCurrentXmlTest().getName());
     }
@@ -26,12 +26,12 @@ public class BaseTest {
     @BeforeMethod
     public void setUp(final ITestContext context, final Method method) {
         log.info("Method {}, with declared annotation {} and with group {}.",
-                method.getName(), String.valueOf(method.getDeclaredAnnotation(Test.class)),
-                context.getCurrentXmlTest().getParameter("browser"));
+                method.getName(), String.valueOf(method.getDeclaredAnnotation(Test.class)));
     }
 
     @AfterClass
     public void tearDown() {
         log.info("Ending process on parent level");
     }
+
 }

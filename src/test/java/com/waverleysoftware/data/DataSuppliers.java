@@ -33,16 +33,15 @@ public class DataSuppliers {
     }
 
     @DataSupplier(flatMap = true)
-    public <T> T getData(final Method method) {
+    public <T> StreamEx<T> getData(final Method method) {
         return getTypeByProvidedInfo(method);
     }
 
     @SuppressWarnings("unchecked")
-    private <T> T getTypeByProvidedInfo(final Method method) {
-        
+    private <T> StreamEx<T> getTypeByProvidedInfo(final Method method) {
         return ofNullable(method.getDeclaredAnnotation(Data.class))
-                .map(Data::source)
-                .map(source -> getImplByDataSource(source).readFrom(source, (Class<T>) method.getDeclaredAnnotation(Data.class).dataClass()))
+                .map(data -> StreamEx.of(getImplByDataSource(data.source())
+                        .readFrom(data.source(), (Class<T>) data.entity())))
                 .orElseThrow(() -> new NoClassDefFoundError("No Data class found"));
     }
 

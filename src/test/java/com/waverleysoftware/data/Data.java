@@ -14,5 +14,5 @@ public @interface Data {
 
     String source() default "data";
 
-    Class dataClass() default Object.class;
+    Class entity() default Object.class;
 }

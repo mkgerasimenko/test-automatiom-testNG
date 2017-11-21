@@ -1,7 +1,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="Test Data File">
     <test name="JSON/XML">
-        <parameter name="browser" value="IE"/>
+        <parameter name="browser" value="chrome"/>
         <classes>
             <class name="com.waverleysoftware.DataFromFileTest"/>
         </classes>

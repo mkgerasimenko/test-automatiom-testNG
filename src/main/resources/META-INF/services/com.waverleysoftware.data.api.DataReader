@@ -1,2 +1,2 @@
+com.waverleysoftware.data.impl.CsvReader
 com.waverleysoftware.data.impl.JsonReader
-com.waverleysoftware.data.impl.XmlReader

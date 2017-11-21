@@ -8,7 +8,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.testng.annotations.Test;
 
 import static com.waverleysoftware.assertions.CustomAssertions.assertThat;
-import static org.joor.Reflect.on;
 
 /**
  * A simple class for some data testing.
@@ -16,26 +15,40 @@ import static org.joor.Reflect.on;
 @Slf4j
 public class DataFromFileTest extends BaseTest {
 
-    @Data(source = "panel.json", dataClass = Panel.class)
+    @Data(source = "panel.json", entity = Panel.class)
     @Test(dataProvider = "getData", dataProviderClass = DataSuppliers.class)
-    public void panelShouldBeCreated(final Panel panel) {
-        assertThat(panel).hasPanelName("ac");
+    public void singleObjectSingleClass(final Panel panel) {
+        assertThat(panel).hasPanelName("adc");
     }
 
-    @Data(source = "client.xml", dataClass = Client.class)
+    @Data(source = "panels.json", entity = Panel[].class)
     @Test(dataProvider = "getData", dataProviderClass = DataSuppliers.class)
-    public void clientShouldBeModified(final Client client) {
-        assertThat(client).hasJob("Child");
+    public void multiObjectsMultiClasses(final Panel panel) {
+        assertThat(panel).hasPanelName("lyn");
     }
 
-    @Data(source = "client.xml", dataClass = Client.class)
+    @Data(source = "panel.json", entity = Panel[].class)
     @Test(dataProvider = "getData", dataProviderClass = DataSuppliers.class)
-    public void clientShouldBeDeleted(final Client client) {
+    public void singleObjectMultiClasses(final Panel panel) {
+        assertThat(panel).hasMasterCode("2222");
+    }
+
+    @Data(source = "panels.json", entity = Panel.class)
+    @Test(dataProvider = "getData", dataProviderClass = DataSuppliers.class)
+    public void multiObjectsSingleClass(final Panel panel) {
+        assertThat(panel).hasMasterCode("1111");
+    }
+
+    @Data(source = "client.csv", entity = Client.class)
+    @Test(dataProvider = "getData", dataProviderClass = DataSuppliers.class)
+    public void clientSingleTest(final Client client) {
+        assertThat(client).hasAge(12);
+    }
+
+    @Data(source = "clients.csv", entity = Client.class)
+    @Test(dataProvider = "getData", dataProviderClass = DataSuppliers.class)
+    public void clientMultiTest(final Client client) {
         assertThat(client).hasClientName("Pavel");
     }
-
-    @Test
-    public void clientShouldBeHasSameName() {
-        assertThat((Client) on(Client.class).create().get()).hasClientName("Maks");
-    }
 }
+

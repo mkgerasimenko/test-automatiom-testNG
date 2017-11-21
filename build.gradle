@@ -25,6 +25,10 @@ ext {
     jdom = '2.0.6'
     commonsIo = '1.3.2'
     joor = '0.9.6'
+    webmanager = '1.7.2'
+    selenium = '3.7.1'
+    mapper = '1.9.13'
+
 }
 
 dependencies {
@@ -39,7 +43,10 @@ dependencies {
             "org.apache.commons:commons-lang3:${commonLeng3}",
             "org.jdom:jdom2:${jdom}",
             "org.apache.commons:commons-io:${commonsIo}",
-            "org.jooq:joor:${joor}")
+            "org.jooq:joor:${joor}",
+            "org.seleniumhq.selenium:selenium-java:${selenium}",
+            "io.github.bonigarcia:webdrivermanager:${webmanager}",
+            "org.codehaus.jackson:jackson-mapper-asl:${mapper}")
 }
 
 task wrapper(type: Wrapper) {

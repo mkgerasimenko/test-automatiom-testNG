@@ -1,0 +1,12 @@
+[
+  {
+    "name": "adc",
+    "masterCode": "1111",
+    "type": "home"
+  },
+  {
+    "name": "lyn",
+    "masterCode": "2222",
+    "type": "mohe"
+  }
+]
