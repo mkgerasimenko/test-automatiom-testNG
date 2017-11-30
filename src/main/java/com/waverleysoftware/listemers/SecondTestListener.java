@@ -32,7 +32,6 @@ public class SecondTestListener implements ISuiteListener {
     }
 
     public static DataReader getImplByDataSource(final String dataSource) {
-
         return StreamEx.of(READERS)
                 .findFirst(impl -> impl.getEntityType().equals(getExtension(dataSource)))
                 .orElseThrow(() -> new NotImplementedException("No implement found"));

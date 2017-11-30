@@ -1,4 +1,4 @@
-package com.waverleysoftware;
+package com.waverleysoftware.basecore;
 
 import lombok.extern.slf4j.Slf4j;
 import org.testng.ITestContext;
@@ -33,5 +33,4 @@ public class BaseTest {
     public void tearDown() {
         log.info("Ending process on parent level");
     }
-
 }

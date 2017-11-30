@@ -1,5 +1,6 @@
 package com.waverleysoftware;
 
+import com.waverleysoftware.basecore.BaseTest;
 import com.waverleysoftware.data.Data;
 import com.waverleysoftware.data.DataSuppliers;
 import com.waverleysoftware.model.Client;
@@ -13,7 +14,7 @@ import static com.waverleysoftware.assertions.CustomAssertions.assertThat;
  * A simple class for some data testing.
  */
 @Slf4j
-public class DataFromFileTest extends BaseTest {
+public class DataFromFileTests extends BaseTest {
 
     @Data(source = "panel.json", entity = Panel.class)
     @Test(dataProvider = "getData", dataProviderClass = DataSuppliers.class)

@@ -1,5 +1,6 @@
 package com.waverleysoftware;
 
+import com.waverleysoftware.basecore.BaseTest;
 import com.waverleysoftware.data.DataSuppliers;
 import com.waverleysoftware.model.Panel;
 import lombok.extern.slf4j.Slf4j;

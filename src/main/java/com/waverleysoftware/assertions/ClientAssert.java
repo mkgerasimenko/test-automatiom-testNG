@@ -41,6 +41,7 @@ public class ClientAssert extends AbstractAssert<ClientAssert, Client> {
         isNotNull();
 
         final String job = actual.getJob();
+
         if (!Objects.areEqual(job, clientJob)) {
             failWithMessage(ERROR_MESSAGE_TEMPLATE, "Client job", actual, clientJob, job);
         }
